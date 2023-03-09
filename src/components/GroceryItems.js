@@ -14,7 +14,7 @@ function GroceryItems() {
     }, []);
 
   return (
-    <div>
+    <div style={{padding: '10px',margin: 'auto', height:'50%',width:'50%', alignContent : 'center'}}>
       <h6>Grocery Maxium sale List</h6>
       <table className='table' style={{textAlign : "center", width:"100%"}}>
         <thead>
