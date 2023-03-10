@@ -14,15 +14,14 @@ function PriceTrending() {
       });
     setOptions(itemOptionArray);
     setSelectedItem(itemOptionArray[0]);
-    fetchItemByName(selectedItem);
+    fetchItemByName();
   }
 
   const handleSelect = (selectedItem) => {
     //alert(selectedItem);
     console.log('Selected option:', selectedItem);
-    setSelectedItem(selectedItem.itemName);
-    setItemData(selectedItem);
-    fetchItemByName(selectedItem);
+    setSelectedItem(selectedItem);
+    fetchItemByName();
   };
 
   useEffect(() => {
@@ -31,12 +30,11 @@ function PriceTrending() {
       const response = await fetch('http://localhost:8080/grocery/list');
       const json = await response.json();
       initializeOptions(json);
-      setSelectedItem(json[0].itemName)
     }
     fetchData()
   }, []);
 
-  const fetchItemByName = (selectedItem) => {
+  const fetchItemByName = () => {
     //alert("fetch api", selectedItem)
     fetch('http://localhost:8080/grocery/sale-list?itemName='+ encodeURIComponent(selectedItem))
       .then(response => response.json())
