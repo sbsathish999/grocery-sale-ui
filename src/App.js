@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import GroceryItems from './components/GroceryItems';
 import PriceTrending from './components/PriceTrending';

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import LineChart from './LineChart';
 import Dropdown from './DropDown';
+import Loader from './Loader';
 
 
 function PriceTrending() {
   const [itemData, setItemData] = useState({});
   const [options, setOptions] = useState([]);
   const [selectedItem, setSelectedItem] = useState();
+  const [loading, setLoading] = useState(true);
 
   const initializeOptions = (items) => {
     const itemOptionArray = items.map(function(item) {
@@ -15,6 +17,7 @@ function PriceTrending() {
     setOptions(itemOptionArray);
     setSelectedItem(itemOptionArray[0]);
     fetchItemByName();
+    setLoading(false);
   }
 
   const handleSelect = (selectedItem) => {
@@ -44,8 +47,11 @@ function PriceTrending() {
   return (
     <div>
         <br/>
-        <Dropdown options={options} onSelect={handleSelect} />
-        <LineChart itemData={itemData}/>
+        { loading ?  <Loader /> : (
+          <div>
+            <Dropdown options={options} onSelect={handleSelect} />
+            <LineChart itemData={itemData}/>
+          </div>)}
     </div>)
 }
 
